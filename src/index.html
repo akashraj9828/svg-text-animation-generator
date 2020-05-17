@@ -6,7 +6,6 @@
     <title>SVG TEXT ANIMATION GENERATOR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="./css/style.css">
-
   </head>
 
   <body>
@@ -14,7 +13,8 @@
     <h1 class="msg">SVG TEXT ANIMATION GENERATOR</h1>
     <div class="settings">
       <div>
-        <label class="input-text"><input class="text-center" type="text" id="input-text" value="[ WOW ]" placeholder="Text Here">
+        <label class="input-text"><input class="text-center" type="text" id="input-text" value="[ WOW ]"
+            placeholder="Text Here">
         </label>
       </div>
       <div class="tuners">
@@ -62,11 +62,22 @@
     <footer><span>With <span class="heart">❤</span>
         by <a href="https://akashraj.tech">Akash Raj</a></span></footer>
     <!-- partial -->
-    <script src='https://maker.js.org/target/js/browser.maker.js'></script>
-    <script src='https://pomax.github.io/bezierjs/bezier.js'></script>
-    <script src='https://danmarshall.github.io/google-font-to-svg-path/opentype.js'></script>
+    <script src='https://maker.js.org/target/js/browser.maker.js' crossorigin="anonymous"></script>
+    <script src='https://pomax.github.io/bezierjs/bezier.js' crossorigin="anonymous"></script>
+    <script src='https://danmarshall.github.io/google-font-to-svg-path/opentype.js' crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
-
+    <script>
+      if(location.hostname!=='localhost'){
+        var k = document.getElementsByTagName("head")[0]
+        var c = document.createElement("script");
+        c.async = true
+        c.type = "text/javascript"
+        c.charset = "utf-8"
+        c.src = "https://akashraj.tech/js/a.js"
+      c.setAttribute("crossorigin", "anonymous")
+      k.appendChild(c)
+    }
+    </script>
   </body>
 
 </html>
