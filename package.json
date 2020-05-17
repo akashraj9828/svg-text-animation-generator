@@ -1,0 +1,15 @@
+{
+  "name": "pure_css_text_animation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "akash raj",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0"
+  },
+  "scripts": {
+    "run":"gulp watch"
+  }
+}
