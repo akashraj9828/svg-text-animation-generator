@@ -1,0 +1,44 @@
+  input,select{
+    transition: .5s;
+  }
+  .tuners {
+    display: flex;
+  } 
+  .settings{
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin: 1rem .5rem;
+  }
+  input,
+  select {
+    padding: .2rem .5rem;
+    border: 0;
+    border-radius: 5px;
+    width: 100%;
+  
+    &:focus,
+    &:hover,
+    &:active {
+      outline: none;
+      border-bottom: 2px solid blue;
+    }
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  .text-center{
+    text-align: center;
+  }
+  
+  .input-text{
+    font-size: 2rem;
+    max-width: 500px;
+    margin:0px auto;
+  }
+  
