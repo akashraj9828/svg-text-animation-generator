@@ -8,27 +8,37 @@ import {
     SET_DURATION,
     SET_STROKE_WIDTH,
     setSettings,
-    SET_FILL_COLOR
+    SET_FILL_COLOR,
+    SET_FONT_FAMILY,
+    SET_FONT_VARIANT
 } from './../../../redux/actions'
 
+
+// import {fontList} from "./../../logic/util"
+import { svgGenerator } from './../../logic/'
 
 let SettingsHolder = (props) => {
 
     let { dispatch } = props
 
-    let {
-        fontFamily,
-        fontVariant,
-        text,
-        size,
-        unionCheckbox,
-        separateCheckbox,
-        bezierAccuracy,
-        delay,
-        duration,
-        strokeWidth, 
-        fillColor
-    } = props
+    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, initialized } = props
+
+    useEffect(() => {
+        
+        if (initialized) {
+            svgGenerator.renderCurrent()
+        }
+    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, initialized])
+
+    useEffect(() => {
+        
+        if (initialized) {
+            svgGenerator.loadVariants()
+        }
+    }, [fontFamily, initialized])
+
+
+
 
     const update = (key, val) => dispatch(setSettings(key, val))
 
@@ -54,13 +64,15 @@ let SettingsHolder = (props) => {
                     <div>
                         <label>Font:<select
                             id="font-select"
-                        // onChange={e => update(SET_FONT,e.target.value)}
+                            value={fontFamily}
+                            onChange={e => update(SET_FONT_FAMILY, e.target.value)}
                         >
                         </select>
                         </label>
                         <label>Variant:<select
                             id="font-variant"
-                        // onChange={e => update(SET_VARIANT,e.target.value)}
+                            value={fontVariant}
+                            onChange={e => update(SET_FONT_VARIANT, e.target.value)}
                         >
                         </select>
                         </label>
@@ -157,8 +169,8 @@ let SettingsHolder = (props) => {
 
 const mapStateToProps = (state) => {
 
-    let { settings } = state
-    return { ...settings }
+    let { settings, meta } = state
+    return { ...settings, ...meta }
 }
 
 

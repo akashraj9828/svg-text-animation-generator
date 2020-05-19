@@ -1,6 +1,8 @@
 import {
     default_state,
     SET_TEXT,
+    SET_FONT_FAMILY,
+    SET_FONT_VARIANT,
     SET_SIZE,
     SET_DELAY,
     SET_DURATION,
@@ -9,17 +11,27 @@ import {
     // output
     SET_SVG,
     SET_CSS,
-    SET_JS
+    SET_JS,
+    // meta
+    SET_INITIALIZED
 } from "./actions"
 
 
 
 function reducer(state = default_state, action) {
-    let { settings, output } = {...state};
+    let { settings, output ,meta} = {...state};
     let value = action.value;
     switch (action.type) {
         case SET_TEXT:
             settings.text = value
+            var new_state={ ...state, settings }
+            return new_state
+        case SET_FONT_FAMILY:
+            settings.fontFamily = value
+            var new_state={ ...state, settings }
+            return new_state
+        case SET_FONT_VARIANT:
+            settings.fontVariant = value
             var new_state={ ...state, settings }
             return new_state
         case SET_SIZE:
@@ -59,6 +71,10 @@ function reducer(state = default_state, action) {
         case SET_SVG:
             output.svg = value
             return { ...state, output }
+
+        case SET_INITIALIZED:
+            meta.initialized = value
+            return { ...state, meta }
 
         default:
             return state

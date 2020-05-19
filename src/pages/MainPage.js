@@ -9,23 +9,21 @@ import SvgSnippet from './components/Snippets/SvgSnippet'
 import {genKeyFrames,setAnimation,svgGenerator} from "./logic"
 
 export default function MainPage() {
-    console.log("render");
     const [instance, setInstance] = useState()
     useEffect(() => {
         let test=document.getElementById('font-select')
         if(test){
+            genKeyFrames()
             setAnimation()
-            let ins=svgGenerator
-            setInstance(ins)
-            ins.init()
+            svgGenerator.init()
         }
-      });
+      },[]);
 
    
     return (
         <Fragment>
             <Header/>
-            <SettingsHolder instance={instance}/>
+            <SettingsHolder/>
             <SvgHolder/>
             <CodeHolder>
                 <CssSnippet/>

@@ -8,8 +8,8 @@ export {
     svgGenerator
 }
 
-window.gg={
-    genKeyFrames,
-    setAnimation, 
-    svgGenerator
-}
+// window.gg={
+//     genKeyFrames,
+//     setAnimation, 
+//     svgGenerator
+// }
