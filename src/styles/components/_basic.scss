@@ -24,6 +24,10 @@ body {
   
   .svg-holder,#svg-holder{
     text-align: center;
+    svg{
+      padding:1rem;
+
+    }
   }
 
   .code-holder {
@@ -33,4 +37,12 @@ body {
     padding: 10px;
     margin-bottom: 50px;
     width: 100%;
+    .code-heading{
+      color:rgba(255,255,255,0.5)
+    }
+    pre{
+      border-radius: 5px;
+    }
   }
+
+  

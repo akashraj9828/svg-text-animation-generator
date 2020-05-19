@@ -10,28 +10,27 @@ import {
     setSettings,
     SET_FILL_COLOR,
     SET_FONT_FAMILY,
-    SET_FONT_VARIANT
+    SET_FONT_VARIANT,
+    SET_TIMING_FUNCTION
 } from './../../../redux/actions'
 
 
-// import {fontList} from "./../../logic/util"
 import { svgGenerator } from './../../logic/'
 
 let SettingsHolder = (props) => {
 
     let { dispatch } = props
 
-    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, initialized } = props
+    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor,timingFunction, initialized } = props
 
     useEffect(() => {
-        
         if (initialized) {
             svgGenerator.renderCurrent()
         }
-    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, initialized])
+    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant,timingFunction, initialized])
 
     useEffect(() => {
-        
+
         if (initialized) {
             svgGenerator.loadVariants()
         }
@@ -43,127 +42,145 @@ let SettingsHolder = (props) => {
     const update = (key, val) => dispatch(setSettings(key, val))
 
     return (
-        <div>
-            <div
-                className="settings">
-                <div>
-                    <label
-                        className="input-text">
+            <div className="settings">
+                <div className="text-holder">
+                    <div className="input-group text-center ">
                         <input
-                            className="text-center"
+                            className="input-text text-center "
                             type="text"
                             id="input-text"
                             value={text}
-                            placeholder="Text Here"
+                            placeholder="Input Text Here"
                             onChange={e => update(SET_TEXT, e.target.value)}
                         />
-                    </label>
+
+                    </div>
                 </div>
-                <div
-                    className="tuners">
+
+                <div className="tuners-holder">
                     <div>
-                        <label>Font:<select
-                            id="font-select"
-                            value={fontFamily}
-                            onChange={e => update(SET_FONT_FAMILY, e.target.value)}
-                        >
-                        </select>
-                        </label>
-                        <label>Variant:<select
-                            id="font-variant"
-                            value={fontVariant}
-                            onChange={e => update(SET_FONT_VARIANT, e.target.value)}
-                        >
-                        </select>
-                        </label>
+                        <div className="input-group">
+                            <label>Font:</label>
+                            <select
+                                id="font-select"
+                                value={fontFamily}
+                                onChange={e => update(SET_FONT_FAMILY, e.target.value)}
+                            >
+                            </select>
+                        </div>
+
+                        <div className="input-group">
+                            <label>Variant:</label>
+                            <select
+                                id="font-variant"
+                                value={fontVariant}
+                                onChange={e => update(SET_FONT_VARIANT, e.target.value)}
+                            >
+                            </select>
+
+                        </div>
                     </div>
                     <div>
-                        <label>Size:
+                        <div className="input-group">
+
+                            <label>Size:</label>
                             <input
                                 type="number"
                                 id="input-size"
                                 value={size}
+                                placeholder={100}
                                 onChange={e => update(SET_SIZE, e.target.value)}
-                            // onChange={renderCurrent}
 
                             />
-                        </label>
-                        <label>Bezier accuracy:
+                        </div>
+
+                        <div className="input-group">
+                            <label>Stroke Width(px):</label>
                             <input
-                                type="text"
-                                id="input-bezier-accuracy"
-                                placeholder="auto"
-                            // onChange={renderCurrent}
+                                type="number"
+                                id="input-width"
+                                value={strokeWidth}
+                                placeholder={2 + 'px'}
+                                onChange={e => update(SET_STROKE_WIDTH, e.target.valueAsNumber)}
 
                             />
-                        </label>
+                        </div>
+                       
                     </div>
                     <div>
-                        <label
-                            className="hidden">Union:
-                        <input
-                                type="checkbox"
-                                id="input-union"
-                            // onChange={renderCurrent}
+                        <div className="input-group">
 
-                            />
-                        </label>
-                        <label>Delay(s):
+                            <label>Delay(s):</label>
                             <input
-                                type="number" checked
+                                type="number"
                                 id="input-delay"
+                                placeholder={0.1 + 's'}
                                 value={delay}
                                 onChange={e => update(SET_DELAY, e.target.valueAsNumber)}
-                            // onChange={renderCurrent}
 
                             />
-                        </label>
-                        <label>Animation duration(s):
+                        </div>
+                        <div className="input-group">
+
+                            <label>Animation duration(s):</label>
                             <input
                                 type="number"
                                 id="input-duration"
                                 placeholder="auto"
                                 value={duration}
                                 onChange={e => update(SET_DURATION, e.target.valueAsNumber)}
-                            // onChange={renderCurrent}
 
                             />
-                        </label>
+
+                        </div>
                     </div>
                     <div>
-                        <label>Stroke Width(px):
-                            <input
-                                type="number"
-                                id="input-width"
-                                value={strokeWidth}
-                                onChange={e => update(SET_STROKE_WIDTH, e.target.valueAsNumber)}
-                            // onChange={renderCurrent}
-
-                            />
-                        </label>
-                        <label>Stroke Width(px):
+                    <div className="input-group">
+                            <label>Timing Function:</label>
+                            <select id="timing-function"
+                                value={timingFunction}
+                                onChange={e => update(SET_TIMING_FUNCTION, e.target.value)}
+                            >
+                                <option value='ease'>ease</option>
+                                <option value='ease-in'>ease-in</option>
+                                <option value='ease-out'>ease-out</option>
+                                <option value='ease-in-out'>ease-in-out</option>
+                                <option value='linear'>linear</option>
+                                <option value='step-start'>step-start</option>
+                                <option value='step-end'>step-end</option>
+                            </select>
+                        </div>
+                        <div className="input-group">
+                            <label>Fill Color:</label>
                             <input
                                 type="color"
                                 id="input-color"
                                 value={fillColor}
                                 onChange={e => update(SET_FILL_COLOR, e.target.value)}
-                            // onChange={renderCurrent}
 
                             />
-                        </label>
-                        <label
+                        </div>
+                    </div>
+                    <div>
+                        {/* <label</label>
                             className="hidden">Separate characters:
                         <input
                                 type="checkbox" checked
                                 id="input-separate"
-                            // onChange={renderCurrent}
-
                             />
-                        </label>
+                        
+                        <label</label>
+                            className="hidden">Union:
+                        <input
+                                type="checkbox"
+                                id="input-union"
+                            />
+                         */}
                     </div>
                 </div>
+
+
             </div>
-        </div>
     )
 }
 

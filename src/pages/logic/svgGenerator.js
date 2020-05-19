@@ -7,20 +7,31 @@ import { genKeyFrames } from "./index"
 
 function App() {
     let state = store.getState();
-    let { settings, output, meta } = state;
+    let { settings} = state;
     this.initialized = false;
+    this.fontList = {}
     this.init = function () {
         this.bind()
-        this.loadFonts()
-        store.dispatch(setMeta(SET_INITIALIZED, true))
+        this.loadFonts().then(_ => {
+            store.dispatch(setMeta(SET_INITIALIZED, true))
+        })
     }
     this.bind = function () {
         this.selectFamily = this.$('#font-select');
         this.selectVariant = this.$('#font-variant');
     };
 
-    this.loadFonts = function () {
-        this.getGoogleFonts('AIzaSyDedkw4Dr7wPMbTcUfTpXBLgyoncPygzDU');
+    this.loadFonts = async function () {
+        const apiKey = 'AIzaSyDedkw4Dr7wPMbTcUfTpXBLgyoncPygzDU';
+        let fontList = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`).then(res => res.json())
+        this.fontList = fontList;
+        this.fontList.items.forEach(
+            (font) => {
+                return this.addOption(this.selectFamily, font.family);
+            }
+        );
+        this.loadVariants();
+        return 1
     }
     this.renderCurrent = function () {
         var size = settings.size;
@@ -42,14 +53,13 @@ function App() {
             }
             var svg = makerjs.exporter.toSVG(textModel);
             store.dispatch(setOutput(SET_SVG, svg))
-            setAnimation(settings.delay, settings.duration, settings.strokeWidth);
+            setAnimation();
             genKeyFrames()
         });
     };
 
     // loads variants after font-change
     this.loadVariants = function () {
-        // debugger
         this.selectVariant.options.length = 0;
         var f = this.fontList.items[this.selectFamily.selectedIndex];
         f.variants.forEach((v) => { return this.addOption(this.selectVariant, v); });
@@ -58,19 +68,7 @@ function App() {
     this.$ = function (selector) {
         return document.querySelector(selector);
     };
-    this.getGoogleFonts = function (apiKey) {
-        fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`)
-            .then(res => res.json())
-            .then(fontList => {
-                this.fontList = fontList;
-                this.fontList.items.forEach(
-                    (font) => {
-                        return this.addOption(this.selectFamily, font.family);
-                    }
-                );
-                this.loadVariants();
-            })
-    };
+
     this.addOption = function (select, optionText) {
         var option = document.createElement('option');
         option.text = optionText;
@@ -79,8 +77,5 @@ function App() {
     };
 
 }
-
-window.App = App
-
 
 export const svgGenerator = new App();

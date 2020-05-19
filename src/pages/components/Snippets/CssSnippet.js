@@ -7,31 +7,32 @@
 // import "prismjs/themes/prism.css";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
-let CssSnippet = ({css}) => {
-  Prism.highlightAll();
+let CssSnippet = ({ css }) => {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [css])
   return (
-      <div>
-          CSS Snippet
-  
-          <pre>
-      <code className="language-css">
+    <div id="output-css">
+      <h2 className="code-heading">CSS Snippet</h2>
+      <pre>
+        <code className="language-css">
           {css}
-      </code>
-    </pre>
-      </div>
+        </code>
+      </pre>
+    </div>
   )
 }
 
 const mapStateToProps = (state) => {
-  let css=state.output.css;
-  return {css}
+  let css = state.output.css;
+  return { css }
 }
 
 
-CssSnippet= connect(mapStateToProps,null)(CssSnippet)
+CssSnippet = connect(mapStateToProps, null)(CssSnippet)
 
 export default CssSnippet
 

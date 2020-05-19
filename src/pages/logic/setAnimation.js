@@ -1,19 +1,33 @@
-export function setAnimation (del = 0.1, dur =0, width = 2) {
-    // select a query selector such that it selects all your svg paths
+import store from "./../../redux/store"
+
+
+export function setAnimation(get_signature = false) {
+    let { settings } = store.getState()
+    let { delay, duration, strokeWidth, timingFunction } = settings
     let paths = document.querySelectorAll("path");
-    let i = 0;
-    // animation delay for next path.
-    let delay = del === '' ? 0.2 : parseFloat(del);
-    let duration = dur === 0 ? paths.length * delay + 1 : parseFloat(dur);
-    let strokeWidth = width ? parseFloat(width) : 2;
-    // set animation for everypath
-    for (let path of paths) {
-        let length = path.getTotalLength();
+    delay = delay ?? 0;
+    duration = duration ?? paths.length * delay + 2
+    strokeWidth = strokeWidth ?? 2
+    timingFunction = timingFunction ?? "linear"
+    if (!get_signature) {
+        setTextAnimation(delay, duration, strokeWidth, timingFunction);
+    } else {
+        return `setTextAnimation(${delay},${duration},${strokeWidth},'${timingFunction}');`
+    }
+
+}
+
+
+export function setTextAnimation(delay, duration, strokeWidth, timingFunction) {
+    let paths = document.querySelectorAll("path");
+    for (let i = 0; i < paths.length; i++) {
+        const path = paths[i]
+        const length = path.getTotalLength();
         path.style["stroke-dashoffset"] = `${length}px`;
         path.style["stroke-dasharray"] = `${length}px`;
         path.style["stroke-width"] = `${strokeWidth}px`;
-        path.style["animation"] = `${duration}s svg-text-anim infinite linear`;
+        path.style["animation"] = `${duration}s svg-text-anim infinite ${timingFunction}`;
         path.style["animation-delay"] = `${i * delay}s`;
-        i++;
     }
+
 }

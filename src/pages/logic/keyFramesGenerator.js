@@ -12,24 +12,22 @@ export const genKeyFrames = () => {
   style.type = 'text/css';
   style.id = 'animation-keyframes';
 
-  let animation = ` 50% {
+  let animation = `   50% {
           stroke-dashoffset: 0;
           fill: transparent;
         }
         100% {
           stroke-dashoffset: 0;
           fill: ${fillColor};
-        }
-      `
-  var keyFrames = `
-    @-webkit-keyframes svg-text-anim {
-       ${animation}
-      }
-      
-      @keyframes svg-text-anim {
-       ${animation}
-      }
-      `;
+        }`
+  var keyFrames = `     /* Google chrome */
+      @-webkit-keyframes svg-text-anim {
+    ${animation}
+    }
+    /* Most browsers */
+    @keyframes svg-text-anim {
+    ${animation}
+    }`;
   style.innerHTML = keyFrames;
   document.getElementsByTagName('head')[0].appendChild(style);
   store.dispatch(setOutput(SET_CSS, keyFrames))

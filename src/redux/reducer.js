@@ -3,6 +3,7 @@ import {
     SET_TEXT,
     SET_FONT_FAMILY,
     SET_FONT_VARIANT,
+    SET_TIMING_FUNCTION,
     SET_SIZE,
     SET_DELAY,
     SET_DURATION,
@@ -35,22 +36,26 @@ function reducer(state = default_state, action) {
             var new_state={ ...state, settings }
             return new_state
         case SET_SIZE:
-            settings.size = value
+            settings.size = value??0
             var new_state={ ...state, settings }
             return new_state
 
         case SET_DELAY:
-            settings.delay = value
+            settings.delay = value??0
+            var new_state={ ...state, settings }
+            return new_state
+        case SET_TIMING_FUNCTION:
+            settings.timingFunction = value
             var new_state={ ...state, settings }
             return new_state
 
         case SET_DURATION:
-            settings.duration = value
+            settings.duration = value??-1
             var new_state={ ...state, settings }
             return new_state
 
         case SET_STROKE_WIDTH:
-            settings.strokeWidth = value
+            settings.strokeWidth = value??2
             var new_state={ ...state, settings }
             return new_state
 

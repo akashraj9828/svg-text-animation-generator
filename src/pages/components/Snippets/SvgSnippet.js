@@ -1,16 +1,23 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
 import { connect } from 'react-redux';
+import {format} from './../../utils'
+
+
 
 let SvgSnippet = ({svg}) => {
-    Prism.highlightAll();
+    useEffect(() => {
+        Prism.highlightAll()
+      }, [svg])
+
+    
     return (
         <div id="output-svg">
-            SVG SNIPPET
+            <h2 className="code-heading">SVG Snippet</h2>
             <pre>
                 <code className="language-html">
-                    {svg}
+                    {format(svg)}
                 </code>
             </pre>
         </div>
