@@ -9,6 +9,7 @@ import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { download } from './../../utils'
 
 let CssSnippet = ({ css }) => {
   useEffect(() => {
@@ -16,7 +17,11 @@ let CssSnippet = ({ css }) => {
   }, [css])
   return (
     <div id="output-css">
-      <h2 className="code-heading">CSS Snippet</h2>
+      <div className="context">
+        <h2 className="code-heading">CSS Snippet</h2>
+        <button className="download-btn" onClick={() => { download('text-animation.css', css) }}>Download</button>
+      </div>
+
       <pre>
         <code className="language-css">
           {css}

@@ -12,14 +12,19 @@ export const genKeyFrames = () => {
   style.type = 'text/css';
   style.id = 'animation-keyframes';
 
-  let animation = `   50% {
+  let animation = `   40% {
           stroke-dashoffset: 0;
           fill: transparent;
+        }
+        60% {
+          stroke-dashoffset: 0;
+          fill: ${fillColor};
         }
         100% {
           stroke-dashoffset: 0;
           fill: ${fillColor};
-        }`
+        }
+        `
   var keyFrames = `     /* Google chrome */
       @-webkit-keyframes svg-text-anim {
     ${animation}

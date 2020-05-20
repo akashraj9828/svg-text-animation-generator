@@ -1,30 +1,36 @@
 import React, { useEffect } from 'react'
-import { setTextAnimation, setAnimation } from "./../../logic/setAnimation"
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
+import { connect } from 'react-redux'
+import { download } from './../../utils'
 
-let js_function = setTextAnimation
-let jscode = ""
-if (js_function) {
-    jscode = js_function.toString()
-}
-const JsSnippet = () => {
-    let js_function_caller = '\n\n' + setAnimation(true)
-    Prism.highlightAll();
-
+let JsSnippet = ({ js }) => {
+    useEffect(() => {
+        Prism.highlightAll()
+    }, [js])
     return (
         <div id="output-js">
-            <h2 className="code-heading">JS Snippet</h2>
+            <div className="context">
+                <h2 className="code-heading">JS Snippet</h2>
+                <button className="download-btn" onClick={() => { download('text-animation.js', js) }}>Download</button>
+            </div>
             <pre>
                 <code className="language-js">
-                    {jscode}
-                    {js_function_caller}
+                    {js}
                 </code>
             </pre>
         </div>
+
     )
 }
 
-export default JsSnippet;
+const mapStateToProps = (state) => {
+    let js = state.output.js;
+    return { js }
+}
 
+
+JsSnippet = connect(mapStateToProps, null)(JsSnippet)
+
+export default JsSnippet
 

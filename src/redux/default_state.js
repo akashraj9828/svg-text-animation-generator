@@ -2,16 +2,16 @@ export const default_state = {
     settings: {
         fontFamily: "",
         fontVariant: "",
-        text: "Sample",
-        size: 200,
+        text: "@akashraj9828",
+        size: 150,
         unionCheckbox: false,
         separateCheckbox: true,
         bezierAccuracy: '',
         delay: 0.1,
-        duration: undefined,
+        duration: '',
         strokeWidth: 2,
-        fillColor: '#ff0000',
-        strokeColor:'#00ff00',
+        fillColor: '#f16f6b',
+        strokeColor:'#ffffff',
         timingFunction:'linear'
     },
     output: {

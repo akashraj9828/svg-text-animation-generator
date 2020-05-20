@@ -43,7 +43,7 @@ function reducer(state = default_state, action) {
             return new_state
 
         case SET_DELAY:
-            settings.delay = value??0
+            settings.delay = isNaN(value)?'':value
             new_state={ ...state, settings }
             return new_state
         case SET_TIMING_FUNCTION:
@@ -52,12 +52,12 @@ function reducer(state = default_state, action) {
             return new_state
 
         case SET_DURATION:
-            settings.duration = value??-1
+            settings.duration = isNaN(value)?'':value
             new_state={ ...state, settings }
             return new_state
 
         case SET_STROKE_WIDTH:
-            settings.strokeWidth = value??2
+            settings.strokeWidth = isNaN(value)?'':value
             new_state={ ...state, settings }
             return new_state
 

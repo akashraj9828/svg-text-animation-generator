@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import { connect } from 'react-redux'
 import {
@@ -22,6 +22,7 @@ let SettingsHolder = (props) => {
 
     let { dispatch } = props
 
+    // eslint-disable-next-line no-unused-vars
     let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, timingFunction, strokeColor, initialized } = props
 
     useEffect(() => {

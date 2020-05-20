@@ -1,4 +1,3 @@
-import {default_state} from './default_state'
 // input
 export const SET_TEXT = "SET_TEXT",
     SET_FONT_FAMILY = "SET_FONT_FAMILY",

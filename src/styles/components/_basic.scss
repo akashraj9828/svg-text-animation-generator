@@ -4,45 +4,74 @@
   box-sizing: border-box;
 }
 
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background: $bg;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $bg;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+// change default scrollbar
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.svg-holder,
+#svg-holder {
+  text-align: center;
+
+  svg {
+    padding: 1rem;
+    background: transparentize($color: black, $amount: 0.8);
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px transparentize($color: #000000, $amount: 0.4);
+  }
+}
+
+.code-holder {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 10px;
+  padding: 10px;
+  margin-bottom: 50px;
+  width: 100%;
+
+
+  pre {
+    border-radius: 5px;
+  }
+
+  .context {
     display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
     align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-  
-  
-  .svg-holder,#svg-holder{
-    text-align: center;
-    svg{
-      padding:1rem;
-
-    }
   }
 
-  .code-holder {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
-    grid-gap: 10px;
-    padding: 10px;
-    margin-bottom: 50px;
-    width: 100%;
-    .code-heading{
-      color:rgba(255,255,255,0.5)
-    }
-    pre{
-      border-radius: 5px;
-    }
+  #output-svg {
+    grid-column-start: 1;
+    grid-column-end: 4;
   }
-
-  
+}
