@@ -13,8 +13,6 @@ export default function MainPage() {
     useEffect(() => {
         let test=document.getElementById('font-select')
         if(test){
-            genKeyFrames()
-            setAnimation()
             svgGenerator.init()
         }
       },[]);

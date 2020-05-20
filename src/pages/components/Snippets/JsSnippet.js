@@ -3,12 +3,12 @@ import { setTextAnimation, setAnimation } from "./../../logic/setAnimation"
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from 'prismjs';
 
+let js_function = setTextAnimation
+let jscode = ""
+if (js_function) {
+    jscode = js_function.toString()
+}
 const JsSnippet = () => {
-    let js_function = setTextAnimation
-    let jscode = ""
-    if (js_function) {
-        jscode = js_function.toString()
-    }
     let js_function_caller = '\n\n' + setAnimation(true)
     Prism.highlightAll();
 

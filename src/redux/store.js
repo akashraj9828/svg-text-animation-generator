@@ -2,7 +2,7 @@
 import { createStore } from 'redux'
 
 import Reducer from './reducer';
-import { default_state } from './actions'
+import { default_state } from './default_state'
 
 
 

@@ -1,5 +1,5 @@
+import {default_state} from './default_state'
 import {
-    default_state,
     SET_TEXT,
     SET_FONT_FAMILY,
     SET_FONT_VARIANT,
@@ -9,6 +9,7 @@ import {
     SET_DURATION,
     SET_STROKE_WIDTH,
     SET_FILL_COLOR,
+    SET_STROKE_COLOR,
     // output
     SET_SVG,
     SET_CSS,
@@ -22,46 +23,51 @@ import {
 function reducer(state = default_state, action) {
     let { settings, output ,meta} = {...state};
     let value = action.value;
+    var new_state=null
     switch (action.type) {
         case SET_TEXT:
             settings.text = value
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
         case SET_FONT_FAMILY:
             settings.fontFamily = value
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
         case SET_FONT_VARIANT:
             settings.fontVariant = value
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
         case SET_SIZE:
             settings.size = value??0
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
 
         case SET_DELAY:
             settings.delay = value??0
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
         case SET_TIMING_FUNCTION:
             settings.timingFunction = value
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
 
         case SET_DURATION:
             settings.duration = value??-1
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
 
         case SET_STROKE_WIDTH:
             settings.strokeWidth = value??2
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
             return new_state
 
         case SET_FILL_COLOR:
             settings.fillColor = value
-            var new_state={ ...state, settings }
+            new_state={ ...state, settings }
+            return new_state
+        case SET_STROKE_COLOR:
+            settings.strokeColor = value
+            new_state={ ...state, settings }
             return new_state
 
 

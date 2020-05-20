@@ -1,29 +1,4 @@
-export const default_state = {
-    settings: {
-        fontFamily: "",
-        fontVariant: "",
-        text: "Sample",
-        size: 200,
-        unionCheckbox: false,
-        separateCheckbox: true,
-        bezierAccuracy: '',
-        delay: 0.1,
-        duration: undefined,
-        strokeWidth: 2,
-        fillColor: '#ff0000',
-        timingFunction:'linear'
-    },
-    output: {
-        svg: '',
-        css: '',
-        js: '',
-    },
-    meta: {
-        initialized: false
-    }
-
-}
-
+import {default_state} from './default_state'
 // input
 export const SET_TEXT = "SET_TEXT",
     SET_FONT_FAMILY = "SET_FONT_FAMILY",
@@ -34,6 +9,7 @@ export const SET_TEXT = "SET_TEXT",
     SET_DURATION = "SET_DURATION",
     SET_STROKE_WIDTH = "SET_STROKE_WIDTH",
     SET_FILL_COLOR = "SET_FILL_COLOR",
+    SET_STROKE_COLOR = "SET_STROKE_COLOR",
 
     // output
     SET_SVG = "SET_SVG",
