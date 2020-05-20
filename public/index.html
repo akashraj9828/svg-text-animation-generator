@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Generates SVG Text Animations with pure CSS using any Google Fonts"
-    />
+    <meta name="description" content="Generates SVG Text Animations with pure CSS using any Google Fonts" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>SVG TEXT ANIMATION GENERATOR (Pure CSS)</title>
   </head>
+  
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-  </body>  
+  </body>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script>
     var environment = "%NODE_ENV%";
-     if (environment === "production") {
-       var k = document.getElementsByTagName("head")[0]
-       var c = document.createElement("script");
-       c.async = true
-       c.type = "text/javascript"
-       c.charset = "utf-8"
-       c.src = "https://akashraj.tech/js/a.js"
-       c.setAttribute("crossorigin", "anonymous")
-       k.appendChild(c)
-     }
- </script>
+    if (environment === "production") {
+      var k = document.getElementsByTagName("head")[0]
+      var c = document.createElement("script");
+      c.async = true
+      c.type = "text/javascript"
+      c.charset = "utf-8"
+      c.src = "https://akashraj.tech/js/a.js"
+      c.setAttribute("crossorigin", "anonymous")
+      k.appendChild(c)
+    }
+  </script>
+
 </html>

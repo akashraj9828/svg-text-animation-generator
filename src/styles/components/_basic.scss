@@ -75,3 +75,42 @@ body {
     grid-column-end: 4;
   }
 }
+
+
+footer{
+  display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .gitIcons,.footer-text{
+      text-align: center;
+    }
+    .gitIcons{
+      span{
+        margin: .5rem .5rem;
+      }
+    }
+}
+
+footer {
+  color: yellow;
+  transition: 0.5s;
+  border-radius: 3px;
+  font-weight: bold;
+  .heart {
+    transition: 0.5s;
+  }
+  &:hover {
+    .heart,
+    a {
+      color: red;
+    }
+  }
+  a {
+    color: yellow;
+    text-decoration: none;
+    transition: 0.5s; 
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

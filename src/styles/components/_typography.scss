@@ -6,9 +6,16 @@
   .subtitle{
     color: rgba(0, 0, 0, 0.2);
     text-align: center;
+    
 
   }
 
+  .fonts-info{
+    color: transparentize($color: #000000, $amount: 0.4);
+    .fonts-link{
+      color:transparentize($color: red, $amount: 0.4)
+    }
+  }
   
   .code-heading {
     color: rgba(255, 255, 255, 0.5);

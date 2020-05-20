@@ -7,6 +7,7 @@ import CodeHolder from './components/Holders/CodeHolder'
 import JsSnippet from './components/Snippets/JsSnippet'
 import SvgSnippet from './components/Snippets/SvgSnippet'
 import {svgGenerator} from "./logic"
+import Footer from './components/Extras/Footer'
 
 export default function MainPage() {
     useEffect(() => {
@@ -25,6 +26,7 @@ export default function MainPage() {
                 <CssSnippet/>
                 <JsSnippet/>
             </CodeHolder>
+            <Footer/>
         </Fragment>
     )
 }

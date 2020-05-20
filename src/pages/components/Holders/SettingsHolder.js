@@ -64,7 +64,7 @@ let SettingsHolder = (props) => {
             <div className="tuners-holder">
                 <div>
                     <div className="input-group">
-                        <label>Font:</label>
+                        <label>Font: <span className="fonts-info">(Check all fonts <a className="fonts-link" href="https://fonts.google.com/?sort=alpha" target="_blank" rel="noopener noreferrer" >here</a>)</span> </label>
                         <select
                             id="font-select"
                             value={fontFamily}
