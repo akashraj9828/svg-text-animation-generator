@@ -8,6 +8,7 @@ import JsSnippet from './components/Snippets/JsSnippet'
 import SvgSnippet from './components/Snippets/SvgSnippet'
 import {svgGenerator} from "./logic"
 import Footer from './components/Extras/Footer'
+import DownloadBundle from './components/Extras/DownloadBundle'
 
 export default function MainPage() {
     useEffect(() => {
@@ -20,6 +21,7 @@ export default function MainPage() {
         <Fragment>
             <Header/>
             <SettingsHolder/>
+            <DownloadBundle/>
             <SvgHolder/>
             <CodeHolder>
                 <SvgSnippet/>

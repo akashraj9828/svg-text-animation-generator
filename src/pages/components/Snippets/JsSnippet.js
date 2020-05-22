@@ -12,7 +12,7 @@ let JsSnippet = ({ js }) => {
         <div id="output-js">
             <div className="context">
                 <h2 className="code-heading">JS Snippet</h2>
-                <button className="download-btn" onClick={() => { download('text-animation.js', js) }}>Download</button>
+                <button className="download-btn" onClick={() => { download('text-animation.js', js) }}>Download JS</button>
             </div>
             <pre>
                 <code className="language-js">

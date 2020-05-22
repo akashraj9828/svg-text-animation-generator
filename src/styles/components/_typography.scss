@@ -1,40 +1,52 @@
 .title {
-    color: rgba(0, 0, 0, 0.4);
-    text-align: center;
-    margin-bottom: 0;
-  }
-  .subtitle{
-    color: rgba(0, 0, 0, 0.2);
-    text-align: center;
-    
+  color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  margin-bottom: 0;
+}
 
-  }
+.subtitle {
+  color: rgba(0, 0, 0, 0.2);
+  text-align: center;
 
-  .fonts-info{
-    color: transparentize($color: #000000, $amount: 0.4);
-    .fonts-link{
-      color:transparentize($color: red, $amount: 0.4)
-    }
+
+}
+
+.fonts-info {
+  color: transparentize($color: #000000, $amount: 0.4);
+
+  .fonts-link {
+    color: transparentize($color: red, $amount: 0.4)
   }
-  
-  .code-heading {
-    color: rgba(255, 255, 255, 0.5);
+}
+
+.code-heading {
+  color: rgba(255, 255, 255, 0.5);
+  display: inline;
+  margin-right: 10px;
+}
+
+.download-btn {
+  background: transparentize($color: yellow, $amount: 0.5);
+  color: transparentize($color: black, $amount: 0.3);
+  padding: 3px;
+  border: 1px solid grey;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+
+  &::before {
+    content: '';
     display: inline;
-    margin-right: 10px;
   }
+}
 
-  .download-btn{
-    background: transparentize($color: yellow, $amount: 0.5);
-    color: transparentize($color: black, $amount: 0.3);
-    padding: 3px;
-    border: 1px solid grey;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    &::before{
-      content:'';
-      display: inline;
-    }
-  }
+.text-center{
+  text-align: center;
+}
+
+.my-1{
+margin: .5rem 0rem;
+}

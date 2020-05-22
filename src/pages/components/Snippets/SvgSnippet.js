@@ -14,7 +14,7 @@ let SvgSnippet = ({ svg }) => {
         <div id="output-svg">
             <div className="context">
                 <h2 className="code-heading">SVG Snippet</h2>
-                <button className="download-btn" onClick={() => { download('text.svg', format(svg)) }}>Download</button>
+                <button className="download-btn" onClick={() => { download('text.svg', format(svg)) }}>Download SVG</button>
             </div>
             <pre>
                 <code className="language-html">

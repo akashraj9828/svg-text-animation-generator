@@ -19,7 +19,7 @@ let CssSnippet = ({ css }) => {
     <div id="output-css">
       <div className="context">
         <h2 className="code-heading">CSS Snippet</h2>
-        <button className="download-btn" onClick={() => { download('text-animation.css', css) }}>Download</button>
+        <button className="download-btn" onClick={() => { download('text-animation.css', css) }}>Download CSS</button>
       </div>
 
       <pre>
