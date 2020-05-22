@@ -13,6 +13,7 @@ import {
     SET_FONT_VARIANT,
     SET_TIMING_FUNCTION,
     SET_STROKE_COLOR,
+    SET_REPEAT,
 } from './../../../redux/actions'
 
 
@@ -23,13 +24,13 @@ let SettingsHolder = (props) => {
     let { dispatch } = props
 
     // eslint-disable-next-line no-unused-vars
-    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, timingFunction, strokeColor, initialized } = props
+    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, timingFunction, strokeColor,repeat, initialized } = props
 
     useEffect(() => {
         if (initialized) {
             svgGenerator.renderCurrent()
         }
-    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, timingFunction, strokeColor, initialized])
+    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, timingFunction, strokeColor,repeat, initialized])
 
     useEffect(() => {
 
@@ -133,6 +134,19 @@ let SettingsHolder = (props) => {
                             placeholder="auto"
                             value={duration}
                             onChange={e => update(SET_DURATION, e.target.valueAsNumber)}
+
+                        />
+
+                    </div>
+                    <div className="input-group ">
+
+                        <label className="inline">Repeat:</label>
+                        <input
+                            type="checkbox"
+                            id="input-duration"
+                            placeholder="auto"
+                            checked={repeat}
+                            onChange={e => update(SET_REPEAT, e.target.checked)}
 
                         />
 

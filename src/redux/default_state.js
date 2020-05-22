@@ -12,7 +12,8 @@ export const default_state = {
         strokeWidth: 2,
         fillColor: '#f16f6b',
         strokeColor:'#ffffff',
-        timingFunction:'linear'
+        timingFunction:'linear',
+        repeat:true,
     },
     output: {
         svg: '',

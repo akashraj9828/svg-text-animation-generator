@@ -10,6 +10,7 @@ import {
     SET_STROKE_WIDTH,
     SET_FILL_COLOR,
     SET_STROKE_COLOR,
+    SET_REPEAT,
     // output
     SET_SVG,
     SET_CSS,
@@ -58,6 +59,10 @@ function reducer(state = default_state, action) {
 
         case SET_STROKE_WIDTH:
             settings.strokeWidth = isNaN(value)?'':value
+            new_state={ ...state, settings }
+            return new_state
+        case SET_REPEAT:
+            settings.repeat = isNaN(value)?'':value
             new_state={ ...state, settings }
             return new_state
 

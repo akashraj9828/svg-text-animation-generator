@@ -25,7 +25,6 @@ function App() {
         const apiKey = 'AIzaSyDedkw4Dr7wPMbTcUfTpXBLgyoncPygzDU';
         let fontList = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`).then(res => res.json())
         this.fontList = fontList;
-        console.log("---: App -> fontList", fontList);
         this.fontList.items.forEach(
             (font) => {
                 return this.addOption(this.selectFamily, font.family);

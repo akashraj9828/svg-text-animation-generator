@@ -8,8 +8,9 @@ export function setAnimation(get_signature = false) {
 
     let jscode = ""
     if (process.env.NODE_ENV === "production") {
-        jscode=`    function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor) {
+        jscode=`function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor,repeat) {
             let paths = document.querySelectorAll("path");
+            let mode=repeat?'infinite':'forwards'
             for (let i = 0; i < paths.length; i++) {
                 const path = paths[i];
                 const length = path.getTotalLength();
@@ -17,10 +18,9 @@ export function setAnimation(get_signature = false) {
                 path.style["stroke-dasharray"] = \`\${length}px\`;
                 path.style["stroke-width"] = \`\${strokeWidth}px\`;
                 path.style["stroke"] = \`\${strokeColor}\`;
-                path.style["animation"] = \`\${duration}s svg-text-anim infinite \${timingFunction}\`;
+                path.style["animation"] = \`\${duration}s svg-text-anim \${mode} \${timingFunction}\`;
                 path.style["animation-delay"] = \`\${i * delay}s\`;
             }
-        
         }`
     }else{
         let js_function = setTextAnimation
@@ -29,7 +29,7 @@ export function setAnimation(get_signature = false) {
         }
     }
     let { settings } = store.getState()
-    let { delay, duration, strokeWidth, timingFunction, strokeColor } = settings
+    let { delay, duration, strokeWidth, timingFunction, strokeColor,repeat } = settings
     let paths = document.querySelectorAll("path");
 
     delay = delay === '' || delay === null ? 0.1 : delay
@@ -43,15 +43,17 @@ export function setAnimation(get_signature = false) {
     duration = parseFloat(duration.toPrecision(2))
     strokeWidth = parseFloat(strokeWidth.toPrecision(2))
 
-    setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor);
+    setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor,repeat);
     // debugger
-    let signature = `${jscode}\n setTextAnimation(${delay},${duration},${strokeWidth},'${timingFunction}','${strokeColor}');`
-    store.dispatch(setOutput(SET_JS, signature))
+    let signature=`setTextAnimation(${delay},${duration},${strokeWidth},'${timingFunction}','${strokeColor}',${repeat});`
+    let final_js = `${jscode}\n ${signature}`
+    store.dispatch(setOutput(SET_JS, final_js))
 }
 
 
-export function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor) {
+export function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor,repeat) {
     let paths = document.querySelectorAll("path");
+    let mode=repeat?'infinite':'forwards'
     for (let i = 0; i < paths.length; i++) {
         const path = paths[i];
         const length = path.getTotalLength();
@@ -59,8 +61,7 @@ export function setTextAnimation(delay, duration, strokeWidth, timingFunction, s
         path.style["stroke-dasharray"] = `${length}px`;
         path.style["stroke-width"] = `${strokeWidth}px`;
         path.style["stroke"] = `${strokeColor}`;
-        path.style["animation"] = `${duration}s svg-text-anim infinite ${timingFunction}`;
+        path.style["animation"] = `${duration}s svg-text-anim ${mode} ${timingFunction}`;
         path.style["animation-delay"] = `${i * delay}s`;
     }
-
 }

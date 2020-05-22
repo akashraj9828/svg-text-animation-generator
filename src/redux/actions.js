@@ -9,6 +9,7 @@ export const SET_TEXT = "SET_TEXT",
     SET_STROKE_WIDTH = "SET_STROKE_WIDTH",
     SET_FILL_COLOR = "SET_FILL_COLOR",
     SET_STROKE_COLOR = "SET_STROKE_COLOR",
+    SET_REPEAT = "SET_REPEAT",
 
     // output
     SET_SVG = "SET_SVG",
@@ -17,9 +18,6 @@ export const SET_TEXT = "SET_TEXT",
 
     // meta
     SET_INITIALIZED = "SET_INITIALIZED"
-
-
-
 
 export function setSettings(type, value) {
     return { type: type, value: value, }
