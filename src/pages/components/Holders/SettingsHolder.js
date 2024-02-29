@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { connect } from 'react-redux'
 import {
@@ -9,28 +9,30 @@ import {
     SET_STROKE_WIDTH,
     setSettings,
     SET_FILL_COLOR,
+    SET_FONT_UPLOADED_FILE,
+    SET_FONT_UPLOADED_NAME,
     SET_FONT_FAMILY,
     SET_FONT_VARIANT,
     SET_TIMING_FUNCTION,
     SET_STROKE_COLOR,
     SET_REPEAT,
 } from './../../../redux/actions'
-
-
+import uploadIcon from './../../../img/upload.svg'
 import { svgGenerator } from './../../logic/'
 
 let SettingsHolder = (props) => {
 
     let { dispatch } = props
+    const inputFontRef = useRef(null);
 
     // eslint-disable-next-line no-unused-vars
-    let { fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, timingFunction, strokeColor,repeat, initialized } = props
+    let { fontUploadedFile, fontUploadedName, fontFamily, fontVariant, text, size, unionCheckbox, separateCheckbox, bezierAccuracy, delay, duration, strokeWidth, fillColor, timingFunction, strokeColor,repeat, initialized } = props
 
     useEffect(() => {
         if (initialized) {
             svgGenerator.renderCurrent()
         }
-    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, timingFunction, strokeColor,repeat, initialized])
+    }, [text, size, delay, duration, strokeWidth, fillColor, fontVariant, timingFunction, strokeColor,repeat, initialized, fontUploadedFile])
 
     useEffect(() => {
 
@@ -39,11 +41,29 @@ let SettingsHolder = (props) => {
         }
     }, [fontFamily, initialized])
 
-
-
-
     const update = (key, val) => {
         dispatch(setSettings(key, val))
+    }
+
+    const handleFontUpload = event => {
+        const fileObj = event.target.files && event.target.files[0];
+        if (!fileObj) {
+          return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            update(SET_FONT_UPLOADED_FILE, e.target.result);
+        }
+    
+        update(SET_FONT_UPLOADED_NAME, fileObj.name);
+        reader.readAsArrayBuffer(fileObj);
+    }
+
+    const handleRemoveFontUploaded = () => {
+        update(SET_FONT_UPLOADED_FILE, undefined);
+        update(SET_FONT_UPLOADED_NAME, '');
     }
 
     return (
@@ -65,13 +85,25 @@ let SettingsHolder = (props) => {
             <div className="tuners-holder">
                 <div>
                     <div className="input-group">
-                        <label>Font: <span className="fonts-info">(Check all fonts <a className="fonts-link" href="https://fonts.google.com/?sort=alpha" target="_blank" rel="noopener noreferrer" >here</a>)</span> </label>
+                        <label className='flex-row-group'>
+                            <span>Font: <span className="fonts-info">(Check all fonts <a className="fonts-link" href="https://fonts.google.com/?sort=alpha" target="_blank" rel="noopener noreferrer" >here</a>)</span></span>
+                            <img src={uploadIcon} width={16} alt="Upload your font" title="Upload your font"/>
+                            <input 
+                                ref={inputFontRef} 
+                                type="file" 
+                                id="inputFont" 
+                                accept=".woff, .otf, .ttf"
+                                onChange={handleFontUpload}
+                                multiple={false}
+                            />
+                        </label>
                         <select
                             id="font-select"
                             value={fontFamily}
                             onChange={e => update(SET_FONT_FAMILY, e.target.value)}
                         >
                         </select>
+
                     </div>
 
                     <div className="input-group">
@@ -84,6 +116,20 @@ let SettingsHolder = (props) => {
                         </select>
 
                     </div>
+
+                    { fontUploadedFile ? 
+                        <div className="input-group">
+                            <label>Using uploaded font:</label>
+                            <label className="inline light-text">{fontUploadedName}</label>
+                            <input
+                                type="checkbox"
+                                id="input-duration"
+                                placeholder="Remove font"
+                                checked={fontUploadedFile !== undefined}
+                                onChange={_ => handleRemoveFontUploaded() }
+                            />
+                        </div>
+                    : <></> }
                 </div>
                 <div>
                     <div className="input-group">

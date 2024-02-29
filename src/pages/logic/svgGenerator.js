@@ -39,12 +39,38 @@ function App() {
             size = parseFloat(settings.size);
         if (!size)
             size = 100;
+
         let fontIndex = this.selectFamily.selectedIndex, variantIndex = this.selectVariant.selectedIndex, text = settings.text, union = false, separate = true, bezierAccuracy = '';
+
+        if ( settings.fontUploadedFile ) {            
+            try {
+                const _font = opentype.parse(settings.fontUploadedFile);
+                
+                var textModel = new makerjs.models.Text(_font, text, size, union, false, bezierAccuracy);
+                if (separate) {
+                    for (var i in textModel.models) {
+                        textModel.models[i].layer = i;
+                    }
+                }
+                var svg = makerjs.exporter.toSVG(textModel);
+                store.dispatch(setOutput(SET_SVG, svg))
+                setAnimation();
+                genKeyFrames()
+                
+            } catch (e) {
+                console.error(e);
+            }
+        } else {            
         var f = this.fontList.items[fontIndex];
         var v = f.variants[variantIndex];
         var url = f.files[v].substring(5); //remove http:
+            
         opentype.load(url, (err, font) => {
-            //generate the text using a font
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                
             var textModel = new makerjs.models.Text(font, text, size, union, false, bezierAccuracy);
             if (separate) {
                 for (var i in textModel.models) {
@@ -56,6 +82,7 @@ function App() {
             setAnimation();
             genKeyFrames()
         });
+        }  
     };
 
     // loads variants after font-change

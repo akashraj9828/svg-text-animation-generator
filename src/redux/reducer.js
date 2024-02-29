@@ -1,6 +1,8 @@
 import {default_state} from './default_state'
 import {
     SET_TEXT,
+    SET_FONT_UPLOADED_FILE,
+    SET_FONT_UPLOADED_NAME,
     SET_FONT_FAMILY,
     SET_FONT_VARIANT,
     SET_TIMING_FUNCTION,
@@ -28,6 +30,14 @@ function reducer(state = default_state, action) {
     switch (action.type) {
         case SET_TEXT:
             settings.text = value
+            new_state={ ...state, settings }
+            return new_state
+        case SET_FONT_UPLOADED_FILE:
+            settings.fontUploadedFile = value
+            new_state={ ...state, settings }
+            return new_state
+        case SET_FONT_UPLOADED_NAME:
+            settings.fontUploadedName = value
             new_state={ ...state, settings }
             return new_state
         case SET_FONT_FAMILY:

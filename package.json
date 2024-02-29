@@ -8,17 +8,17 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "makerjs": "^0.17.0",
-    "node-sass": "^4.14.1",
     "opentype.js": "^1.3.3",
     "prismjs": "^1.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "sass": "^1.71.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set \"NODE_OPTIONS=--openssl-legacy-provider\" && react-scripts start",
     "build": "react-scripts build",
     "postbuild":"rm -rf ./docs/* && mv ./build/* ./docs",
     "test": "react-scripts test",
