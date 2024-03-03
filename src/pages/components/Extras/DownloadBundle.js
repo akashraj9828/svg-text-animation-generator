@@ -1,9 +1,9 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { download } from './../../utils'
+import React from "react";
+import { connect } from "react-redux";
+import { download } from "./../../utils";
 let DownloadBundle = (props) => {
-    const { svg, css, js ,text} = props
-    let html_file = `
+	const { svg, css, js, text } = props;
+	let html_file = `
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -23,21 +23,28 @@ let DownloadBundle = (props) => {
                     ${js}
                 </script>
                 </html>
-            `
-    return (
-        <div className="context text-center my-1">
-            <button className="download-btn" onClick={() => { download(`${text}-animation.html`, html_file) }}>Download Source</button>
-        </div>
-    )
-}
+            `;
+	return (
+		<div className='context text-center my-1'>
+			<button
+				className='download-btn'
+				onClick={() => {
+					download(`${text}-animation.html`, html_file);
+				}}
+			>
+				Download Source
+			</button>
+		</div>
+	);
+};
 
 const mapStateToProps = (state) => {
-    let { output,settings } = state
-    return {
-        ...output,text:settings.text
-    }
-}
+	let { output, settings } = state;
+	return {
+		...output,
+		text: settings.text,
+	};
+};
 
-
-DownloadBundle = connect(mapStateToProps, null)(DownloadBundle)
-export default DownloadBundle
+DownloadBundle = connect(mapStateToProps, null)(DownloadBundle);
+export default DownloadBundle;

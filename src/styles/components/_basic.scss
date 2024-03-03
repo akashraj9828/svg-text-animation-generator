@@ -1,116 +1,113 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: $bg;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+		"Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: $bg;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 0;
+	align-items: center;
+	min-height: 100vh;
+	box-sizing: border-box;
 }
 
 // change default scrollbar
 ::-webkit-scrollbar {
-  width: 12px;
+	width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 .svg-holder,
 #svg-holder {
-  text-align: center;
+	text-align: center;
 
-  svg {
-    padding: 1rem;
-    background: transparentize($color: black, $amount: 0.8);
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px transparentize($color: #000000, $amount: 0.4);
-  }
+	svg {
+		padding: 1rem;
+		background: transparentize($color: black, $amount: 0.8);
+		border-radius: 5px;
+		box-shadow: 3px 3px 3px transparentize($color: #000000, $amount: 0.4);
+	}
 }
 
 .code-holder {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
-  // grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  grid-gap: 10px;
-  padding: 10px;
-  margin-bottom: 50px;
-  width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(400px, 1fr));
+	// grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-gap: 10px;
+	padding: 10px;
+	margin-bottom: 50px;
+	width: 100%;
 
+	pre {
+		border-radius: 5px;
+	}
 
-  pre {
-    border-radius: 5px;
-  }
+	.context {
+		display: flex;
+		align-items: center;
+	}
 
-  .context {
-    display: flex;
-    align-items: center;
-  }
-
-  #output-svg {
-    grid-column-start: 1;
-    grid-column-end: 4;
-  }
-}
-
-
-footer{
-  display: flex;
-    justify-content: center;
-    flex-direction: column;
-    .gitIcons,.footer-text{
-      text-align: center;
-    }
-    .gitIcons{
-      span{
-        margin: .5rem .5rem;
-      }
-    }
+	#output-svg {
+		grid-column-start: 1;
+		grid-column-end: 4;
+	}
 }
 
 footer {
-  color: yellow;
-  transition: 0.5s;
-  border-radius: 3px;
-  font-weight: bold;
-  .heart {
-    transition: 0.5s;
-  }
-  &:hover {
-    .heart,
-    a {
-      color: red;
-    }
-  }
-  a {
-    color: yellow;
-    text-decoration: none;
-    transition: 0.5s; 
-    &:hover {
-      text-decoration: none;
-    }
-  }
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	.gitIcons,
+	.footer-text {
+		text-align: center;
+	}
+	.gitIcons {
+		span {
+			margin: 0.5rem 0.5rem;
+		}
+	}
+}
+
+footer {
+	color: yellow;
+	transition: 0.5s;
+	border-radius: 3px;
+	font-weight: bold;
+	.heart {
+		transition: 0.5s;
+	}
+	&:hover {
+		.heart,
+		a {
+			color: red;
+		}
+	}
+	a {
+		color: yellow;
+		text-decoration: none;
+		transition: 0.5s;
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
