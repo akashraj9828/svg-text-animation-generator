@@ -1,5 +1,7 @@
 export const default_state = {
     settings: {
+        fontUploadedFile: undefined,
+        fontUploadedName: "",
         fontFamily: "",
         fontVariant: "",
         text: "@akashraj9828",

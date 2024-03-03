@@ -8,6 +8,26 @@
       font-weight: bold;
       display: block;
       margin: 1rem .5rem;
+
+      label.flex-row-group{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        img {
+          cursor: pointer;
+          transition: all 0.25s ease-in-out;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        input {
+          display: none;
+        }
+
+      }
     }
   } 
   .settings{
@@ -75,4 +95,8 @@
     color:rgba(0,0,0,0.7);
     margin: .5rem 0rem;
     display: block;
+  }
+
+  .light-text {
+    font-weight: 200;
   }
