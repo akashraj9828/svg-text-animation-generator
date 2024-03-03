@@ -63,7 +63,7 @@ function App() {
         } else {            
         var f = this.fontList.items[fontIndex];
         var v = f.variants[variantIndex];
-        var url = f.files[v].substring(5); //remove http:
+        var url = f.files[v]
             
         opentype.load(url, (err, font) => {
                 if (err) {
